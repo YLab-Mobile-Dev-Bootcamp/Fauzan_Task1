@@ -1,6 +1,12 @@
 # starter_project
 
-A new Flutter project.
+Base branches for Fauzan's YLab Bootcamp tasks.
+master branches storing Task1 repository.
+other task will be on other branches.
+
+## Branch Structure
+master : starter project (task1)\
+└─task2
 
 ## Getting Started
 
