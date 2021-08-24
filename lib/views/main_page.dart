@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:starter_project/common/app_font.dart';
+import 'package:starter_project/views/chapter_details.dart';
+import 'package:starter_project/chapter/controller/chapter_controller.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
   final List<String> _tabs = <String>['Surah', 'Juz', 'Hizb'];
+  final ChapterController chapterController = Get.put(ChapterController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +57,6 @@ class MainPage extends StatelessWidget {
                               Container(
                                 height: 30,
                                 width: 10,
-                                color: Colors.white,
                               ),
                               Text(
                                 "Quran Kareem",
@@ -78,98 +81,109 @@ class MainPage extends StatelessWidget {
                             collapseMode: CollapseMode.parallax,
                             centerTitle: true,
                             background: AppBarWidget(),
-                            // centerTitle: true,
-                            // title: Text(
-                            //   "Collapsing Toolbar",
-                            //   style: TextStyle(
-                            //     color: Colors.white,
-                            //     fontSize: 16.0,
-                            //   ),
-                            // ),
-                            // background: Stack(
-                            //   fit: StackFit.expand,
-                            //   children: <Widget>[
-                            //     Positioned(
-                            //       top: 80,
-                            //       left: 10,
-                            //       child: SizedBox(
-                            //         height: double.infinity,
-                            //         width: double.infinity,
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
                           ),
                           forceElevated: innerBoxIsScrolled,
-                          bottom: TabBar(
-                            // These are the widgets to put in each tab in the tab bar.
-                            tabs: _tabs
-                                .map((String name) => Tab(
-                                      child: Text(
-                                        name,
-                                        style: AppFont.tabBarTitle,
-                                      ),
-                                    ))
-                                .toList(),
+                          bottom: PreferredSize(
+                            preferredSize: Size.fromHeight(50),
+                            child: Container(
+                              color: Color(0xFFFFFFFF),
+                              child: TabBar(
+                                // These are the widgets to put in each tab in the tab bar.
+                                tabs: _tabs
+                                    .map((String name) => Tab(
+                                          child: Text(
+                                            name,
+                                            style: AppFont.tabBarTitle,
+                                          ),
+                                        ))
+                                    .toList(),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ];
                   },
-                  body: TabBarView(
-                    // These are the contents of the tab views, below the tabs.
-                    children: _tabs.map(
-                      (String name) {
-                        return SafeArea(
-                          top: false,
-                          bottom: false,
-                          child: Builder(
-                            builder: (BuildContext context) {
-                              return CustomScrollView(
-                                key: PageStorageKey<String>(name),
-                                slivers: <Widget>[
-                                  SliverOverlapInjector(
-                                    handle: NestedScrollView
-                                        .sliverOverlapAbsorberHandleFor(
-                                            context),
-                                  ),
-                                  SliverPadding(
-                                    padding: const EdgeInsets.all(0.0),
-                                    sliver: SliverFixedExtentList(
-                                      itemExtent: 80.0,
-                                      delegate: SliverChildBuilderDelegate(
-                                        (BuildContext context, int index) {
-                                          return ListTile(
-                                            contentPadding: EdgeInsets.all(10),
-                                            title: Text(
-                                              'Item $index',
-                                              style: AppFont.title,
-                                            ),
-                                            subtitle: Text(
-                                              'This is subtitle',
-                                              style: AppFont.subtitle,
-                                            ),
-                                            leading:
-                                                SurahNumber(surahNumber: index),
-                                            trailing: Text(
-                                              "trailing",
-                                              style: AppFont.arabicText2,
-                                            ),
-                                            tileColor: Colors.white,
-                                          );
-                                        },
-                                        childCount: 30,
+                  body: Obx(() {
+                    if (chapterController.isLoading.value) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return TabBarView(
+                        // These are the contents of the tab views, below the tabs.
+                        children: _tabs.map(
+                          (String name) {
+                            return SafeArea(
+                              top: false,
+                              bottom: false,
+                              child: Builder(
+                                builder: (BuildContext context) {
+                                  return CustomScrollView(
+                                    key: PageStorageKey<String>(name),
+                                    slivers: <Widget>[
+                                      SliverOverlapInjector(
+                                        handle: NestedScrollView
+                                            .sliverOverlapAbsorberHandleFor(
+                                                context),
                                       ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    ).toList(),
-                  ),
+                                      SliverPadding(
+                                        padding: const EdgeInsets.all(0.0),
+                                        sliver: SliverFixedExtentList(
+                                          itemExtent: 80.0,
+                                          delegate: SliverChildBuilderDelegate(
+                                            (BuildContext context, int index) {
+                                              return ListTile(
+                                                contentPadding:
+                                                    EdgeInsets.all(10),
+                                                title: Text(
+                                                  chapterController
+                                                      .chapterList[index]
+                                                      .nameSimple!,
+                                                  style: AppFont.title,
+                                                ),
+                                                subtitle: Text(
+                                                  '${chapterController.chapterList[index].revelationPlace!} - ${chapterController.chapterList[index].versesCount!} Verses'
+                                                      .toUpperCase(),
+                                                  style: AppFont.subtitle,
+                                                ),
+                                                leading: SurahNumber(
+                                                  surahNumber: chapterController
+                                                      .chapterList[index].id!,
+                                                ),
+                                                trailing: Text(
+                                                  chapterController
+                                                      .chapterList[index]
+                                                      .nameArabic!,
+                                                  style: AppFont.arabicText2,
+                                                  textAlign: TextAlign.right,
+                                                ),
+                                                tileColor: Colors.white,
+                                                onTap: () {
+                                                  Get.to(
+                                                    ChapterDetails(),
+                                                    arguments: chapterController
+                                                        .chapterList[index]
+                                                        .nameSimple!,
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            childCount: chapterController
+                                                .chapterList.length,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        ).toList(),
+                      );
+                    }
+                  }),
                 ),
               ),
             ),
