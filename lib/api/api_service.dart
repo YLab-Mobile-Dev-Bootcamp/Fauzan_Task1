@@ -24,9 +24,10 @@ class ApiService {
     }
   }
 
-  static Future<List<VerseModel>?> fetchVersesbyChapterId(int chapterId) async {
+  static Future<List<VerseModel>?> fetchVersesbyChapterId(
+      {required int chapterId, required int page}) async {
     var response = await client.get(Uri.parse(
-        'https://api.quran.com/api/v4/verses/by_chapter/$chapterId?words=false&translations=33&fields=text_imlaei'));
+        'https://api.quran.com/api/v4/verses/by_chapter/$chapterId?words=false&translations=33&fields=text_imlaei&page=$page&per_page=20'));
     if (response.statusCode == 200) {
       var jsonString = response.body;
       return verseListFromJson(jsonString).verses;

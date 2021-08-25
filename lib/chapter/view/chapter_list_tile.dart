@@ -53,9 +53,14 @@ class ChapterListTile extends StatelessWidget {
                             ),
                             tileColor: Colors.white,
                             onTap: () {
+                              print(chapterController
+                                  .chapterList[index].versesCount!);
                               Get.to(
                                 () => ChapterDetails(
-                                  chapterController.chapterList[index].id!,
+                                  chapterId:
+                                      chapterController.chapterList[index].id!,
+                                  versesCount: chapterController
+                                      .chapterList[index].versesCount!,
                                 ),
                                 arguments: [
                                   chapterController.chapterList[index].id!,

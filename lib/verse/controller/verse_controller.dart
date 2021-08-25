@@ -5,58 +5,41 @@ import 'package:starter_project/verse/model/verse_model.dart';
 class VerseController extends GetxController {
   var isLoading = true.obs;
   var verseList = <VerseModel>[].obs;
-  // bool? byChapterId;
-  // bool? byJuzId;
-  // int? chapterId;
-  // int? juzId;
-  // VerseController.byChapter({
-  //   this.byChapterId,
-  //   this.chapterId,
-  // });
 
-  // VerseController.byJuz({
-  //   this.byJuzId,
-  //   this.juzId,
-  // });
+  int page = 1;
 
-  // @override
-  // void onInit() {
-  //   fetchVerses(
-  //     byChapterId,
-  //     byJuzId,
-  //     chapterId,
-  //     juzId,
-  //   );
-  //   super.onInit();
-  // }
-
-  void fetchVerses(
-      {bool? byChapterId, bool? byJuzId, int? chapterId, int? juzId}) async {
+  void fetchVerses({
+    bool? byChapterId,
+    bool? byJuzId,
+    int? chapterId,
+    int? juzId,
+    int? versesCount,
+  }) async {
     try {
       isLoading(true);
-      if (byChapterId! && verseList.length == 0) {
-        var verse = await ApiService.fetchVersesbyChapterId(chapterId!);
+      if (byChapterId!) {
+        var verse = await ApiService.fetchVersesbyChapterId(
+            chapterId: chapterId!, page: this.page);
         if (verse != null) {
-          verseList.assignAll(verse);
+          verseList.addAll(verse);
+          if (verseList.length <= versesCount!) {
+            this.page = this.page + 1;
+            fetchVerses(
+              byChapterId: byChapterId,
+              byJuzId: byJuzId,
+              chapterId: chapterId,
+              juzId: chapterId,
+              versesCount: versesCount,
+            );
+          }
           print('dataFetched');
         }
-      } else if (byJuzId! && verseList.length == 0) {
+      } else if (byJuzId!) {
         var verse = await ApiService.fetchVersesbyJuzId(juzId!);
         if (verse != null) {
           verseList.assignAll(verse);
           print('dataFetched');
         }
-      } else if (verseList.length > 0) {
-        verseList.clear();
-        print("Verse List cleared");
-        fetchVerses(
-          byChapterId: byChapterId,
-          byJuzId: byJuzId,
-          chapterId: chapterId,
-          juzId: chapterId,
-        );
-        print(
-            "Will fetching verses with byChapterId: $byChapterId, byJuzId: $byJuzId, chapterId: $chapterId, juzId: $juzId");
       }
     } finally {
       isLoading(false);

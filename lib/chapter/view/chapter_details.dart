@@ -11,11 +11,17 @@ import 'package:starter_project/views/main_page.dart';
 // ignore: must_be_immutable
 class ChapterDetails extends StatelessWidget {
   int? chapterId;
+  int? versesCount;
   VerseController verseController = Get.put(VerseController());
-  ChapterDetails(int? chapterId) {
-    this.chapterId = chapterId!;
+  ChapterDetails({required int chapterId, required int versesCount}) {
+    this.chapterId = chapterId;
+    this.versesCount = versesCount;
     print("New verse for surah $chapterId controller initialized");
-    verseController.fetchVerses(byChapterId: true, chapterId: this.chapterId);
+    verseController.fetchVerses(
+        byChapterId: true,
+        chapterId: this.chapterId,
+        versesCount: this.versesCount);
+    print("Akan ditampilkan surat dengan $versesCount ayat");
   }
 
   @override
