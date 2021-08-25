@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project/main.dart';
 
 class AppFont {
   static const String fontName = "Poppins";

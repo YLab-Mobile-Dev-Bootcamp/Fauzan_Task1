@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:starter_project/chapter/controller/chapter_controller.dart';
 import 'package:starter_project/common/app_font.dart';
 import 'package:starter_project/juz/controller/juz_controller.dart';
-import 'package:starter_project/chapter/view/chapter_details.dart';
 import 'package:starter_project/juz/view/juz_details.dart';
 
 class JuzListTile extends StatelessWidget {

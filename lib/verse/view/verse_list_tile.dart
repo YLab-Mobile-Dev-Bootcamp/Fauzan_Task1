@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starter_project/common/app_font.dart';
-import 'package:starter_project/chapter/view/chapter_details.dart';
 import 'package:starter_project/verse/controller/verse_controller.dart';
-import 'package:starter_project/verse/model/verse_model.dart';
 
 class VerseListTile extends StatelessWidget {
   final VerseController verseController;

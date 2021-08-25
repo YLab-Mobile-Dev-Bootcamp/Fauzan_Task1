@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:starter_project/chapter/view/chapter_list_tile.dart';
 import 'package:starter_project/common/app_font.dart';
 import 'package:starter_project/juz/controller/juz_controller.dart';
-import 'package:starter_project/chapter/view/chapter_details.dart';
 import 'package:starter_project/chapter/controller/chapter_controller.dart';
 import 'package:starter_project/juz/view/juz_list_tile.dart';
 
