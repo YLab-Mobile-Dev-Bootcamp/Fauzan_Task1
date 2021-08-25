@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starter_project/common/app_font.dart';
+import 'package:starter_project/views/main_page.dart';
 
 class JuzDetails extends StatelessWidget {
   @override
@@ -18,7 +19,7 @@ class JuzDetails extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Get.back();
+                  Get.off(() => MainPage());
                 },
                 style: TextButton.styleFrom(
                   splashFactory: NoSplash.splashFactory,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:html/parser.dart';
 import 'package:get/get.dart';
 import 'package:starter_project/common/app_font.dart';
@@ -92,8 +93,11 @@ class VerseTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 12),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 12),
+                  ),
                 ),
                 Container(
                   height: 27,
@@ -111,32 +115,105 @@ class VerseTile extends StatelessWidget {
                         )),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 170),
+                Expanded(
+                  flex: 10,
+                  child: Container(),
                 ),
-                Icon(
-                  Icons.share_outlined,
-                  color: Color(0xFF863ED5),
-                  size: 24.0,
+                SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: Stack(
+                    children: <Widget>[
+                      Center(
+                        child: Icon(
+                          Icons.share_outlined,
+                          color: Color(0xFF863ED5),
+                          size: 24.0,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Fluttertoast.showToast(
+                            msg: "Fitur Share belum bisa diakses",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.SNACKBAR,
+                          );
+                        },
+                        child: Container(
+                          width: 26,
+                          height: 26,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 16),
+                Expanded(
+                  flex: 1,
+                  child: Container(),
                 ),
-                Icon(
-                  Icons.play_arrow_outlined,
-                  color: Color(0xFF863ED5),
-                  size: 24.0,
+                SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: Stack(
+                    children: <Widget>[
+                      Center(
+                        child: Icon(
+                          Icons.play_arrow_outlined,
+                          color: Color(0xFF863ED5),
+                          size: 28.0,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Fluttertoast.showToast(
+                            msg: "Audio belum bisa diakses",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.SNACKBAR,
+                          );
+                        },
+                        child: Container(
+                          width: 26,
+                          height: 26,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 16),
+                Expanded(
+                  flex: 1,
+                  child: Container(),
                 ),
-                Icon(
-                  Icons.bookmark_border_outlined,
-                  color: Color(0xFF863ED5),
-                  size: 24.0,
+                SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: Stack(
+                    children: <Widget>[
+                      Center(
+                        child: Icon(
+                          Icons.bookmark_border_outlined,
+                          color: Color(0xFF863ED5),
+                          size: 24.0,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Fluttertoast.showToast(
+                            msg: "Fitur bookmark belum bisa diakses",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.SNACKBAR,
+                          );
+                        },
+                        child: Container(
+                          width: 26,
+                          height: 26,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 13),
+                Expanded(
+                  flex: 1,
+                  child: Container(),
                 ),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:starter_project/chapter/view/chapter_list_tile.dart';
@@ -49,16 +50,42 @@ class MainPage extends StatelessWidget {
                         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
                             context),
                         sliver: SliverAppBar(
-                          leading: Icon(
-                            Icons.menu,
-                            color: Color(0xFF8789A3),
+                          leading: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Center(
+                              child: Container(
+                                child: Stack(
+                                  children: <Widget>[
+                                    Center(
+                                      child: Icon(
+                                        Icons.menu_outlined,
+                                        color: Color(0xFF8789A3),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: TextButton(
+                                        onPressed: () {
+                                          Fluttertoast.showToast(
+                                            msg: "Menu belum bisa diakses",
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.SNACKBAR,
+                                          );
+                                        },
+                                        child: Container(),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                          leadingWidth: 20,
+                          leadingWidth: 30,
                           title: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 height: 30,
-                                width: 10,
+                                width: 1,
                               ),
                               Text(
                                 "Quranku",
@@ -67,10 +94,43 @@ class MainPage extends StatelessWidget {
                             ],
                           ),
                           actions: <Widget>[
-                            Container(
-                              child: Icon(
-                                Icons.search,
-                                color: Color(0xFF8789A3),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                child: Stack(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 30),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Icon(
+                                              Icons.search,
+                                              color: Color(0xFF8789A3),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Center(
+                                      child: TextButton(
+                                        onPressed: () {
+                                          Fluttertoast.showToast(
+                                            msg: "Search belum bisa diakses",
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.SNACKBAR,
+                                          );
+                                        },
+                                        child: Container(),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -193,12 +253,19 @@ class AppBarWidget extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
+                onTap: () {
+                  Fluttertoast.showToast(
+                    msg: "Kartu belum bisa diakses",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.SNACKBAR,
+                  );
+                },
                 child: Stack(
-                  children: <Widget>[
+                  children: [
                     Row(
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(left: 16.0),
+                        Container(
+                          width: 16.0,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

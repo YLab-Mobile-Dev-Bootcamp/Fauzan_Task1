@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:starter_project/common/app_font.dart';
@@ -59,24 +60,35 @@ class ChapterDetails extends StatelessWidget {
                       sliver: SliverAppBar(
                         leading: Align(
                           alignment: Alignment.centerLeft,
-                          child: TextButton(
-                            onPressed: () {
-                              Get.off(() => MainPage());
-                            },
+                          child: Center(
                             child: Container(
-                              child: Icon(
-                                Icons.arrow_back,
-                                color: Color(0xFF8789A3),
+                              child: Stack(
+                                children: <Widget>[
+                                  Center(
+                                    child: Icon(
+                                      Icons.arrow_back,
+                                      color: Color(0xFF8789A3),
+                                    ),
+                                  ),
+                                  Center(
+                                    child: TextButton(
+                                      onPressed: () {
+                                        Get.off(() => MainPage());
+                                      },
+                                      child: Container(),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                         ),
-                        leadingWidth: 20,
+                        leadingWidth: 30,
                         title: Row(
                           children: <Widget>[
                             Container(
                               height: 30,
-                              width: 10,
+                              width: 1,
                             ),
                             Text(
                               "${Get.arguments[1]}",
@@ -86,10 +98,40 @@ class ChapterDetails extends StatelessWidget {
                           ],
                         ),
                         actions: <Widget>[
-                          Container(
-                            child: Icon(
-                              Icons.search,
-                              color: Color(0xFF8789A3),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              child: Stack(
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 30),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Icon(
+                                          Icons.search,
+                                          color: Color(0xFF8789A3),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Center(
+                                    child: TextButton(
+                                      onPressed: () {
+                                        Fluttertoast.showToast(
+                                          msg: "Search belum bisa diakses",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.SNACKBAR,
+                                        );
+                                      },
+                                      child: Container(),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
