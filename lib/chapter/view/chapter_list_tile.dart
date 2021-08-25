@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starter_project/chapter/controller/chapter_controller.dart';
@@ -12,6 +13,14 @@ class ChapterListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+      designSize: Size(375, 812),
+    );
+
     return SafeArea(
       top: false,
       bottom: false,
@@ -25,22 +34,26 @@ class ChapterListTile extends StatelessWidget {
                     NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               ),
               SliverPadding(
-                padding: const EdgeInsets.all(0.0),
+                padding: EdgeInsets.all(0.0.w),
                 sliver: SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                       return Column(
                         children: <Widget>[
                           ListTile(
-                            contentPadding: EdgeInsets.all(10),
+                            contentPadding: EdgeInsets.all(2.w),
                             title: Text(
                               chapterController.chapterList[index].nameSimple!,
-                              style: AppFont.title,
+                              style: AppFont.title(
+                                fontSize: 16.sp,
+                              ),
                             ),
                             subtitle: Text(
                               '${chapterController.chapterList[index].revelationPlace!} - ${chapterController.chapterList[index].versesCount!} Ayat'
                                   .toUpperCase(),
-                              style: AppFont.subtitle,
+                              style: AppFont.subtitle(
+                                fontSize: 12.sp,
+                              ),
                             ),
                             leading: SurahNumber(
                               surahNumber:
@@ -48,7 +61,9 @@ class ChapterListTile extends StatelessWidget {
                             ),
                             trailing: Text(
                               chapterController.chapterList[index].nameArabic!,
-                              style: AppFont.arabicText2,
+                              style: AppFont.arabicText2(
+                                fontSize: 20.sp,
+                              ),
                               textAlign: TextAlign.right,
                             ),
                             tileColor: Colors.white,
@@ -80,7 +95,7 @@ class ChapterListTile extends StatelessWidget {
                             },
                           ),
                           Container(
-                            height: 0.5,
+                            height: 0.5.w,
                             color: Colors.grey[300],
                           ),
                         ],
@@ -104,19 +119,33 @@ class SurahNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+      designSize: Size(375, 812),
+    );
+
     return Container(
-      width: 36,
-      height: 36,
+      width: 36.sp,
+      height: 36.sp,
       child: Stack(
         children: <Widget>[
-          Center(child: SvgPicture.asset("assets/icons/ornament.svg")),
+          Center(
+            child: SvgPicture.asset(
+              "assets/icons/ornament.svg",
+              height: 36.sp,
+              width: 36.sp,
+            ),
+          ),
           Center(
             child: Text(
               "$surahNumber",
               style: TextStyle(
                 fontFamily: "Poppins",
                 fontWeight: FontWeight.w600,
-                fontSize: 14,
+                fontSize: 14.sp,
                 color: Color(0xFF240F4F),
               ),
             ),

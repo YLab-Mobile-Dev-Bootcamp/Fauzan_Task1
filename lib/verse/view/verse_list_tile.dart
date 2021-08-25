@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:html/parser.dart';
 import 'package:get/get.dart';
@@ -73,20 +74,28 @@ class VerseTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+      designSize: Size(375, 812),
+    );
+
     return Container(
       // height: 183,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10.0.w),
         color: Color(0xFFFFFFFF),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 47,
+            height: 47.w,
             width: double.infinity,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(10.0.w),
               color: Color(0xFFF9F5FD),
             ),
             child: Row(
@@ -96,23 +105,25 @@ class VerseTile extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 12),
+                    padding: EdgeInsets.only(left: 12.w),
                   ),
                 ),
                 Container(
-                  height: 27,
-                  width: 27,
+                  height: 27.w,
+                  width: 27.w,
                   decoration: BoxDecoration(
                     color: Color(0xFF863ED5),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
-                    child: Text('$verseNumber',
-                        style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontSize: 14,
-                          color: Color(0xFFFFFFFF),
-                        )),
+                    child: Text(
+                      '$verseNumber',
+                      style: TextStyle(
+                        fontFamily: "Poppins",
+                        fontSize: 14.sp,
+                        color: Color(0xFFFFFFFF),
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -120,15 +131,15 @@ class VerseTile extends StatelessWidget {
                   child: Container(),
                 ),
                 SizedBox(
-                  width: 30,
-                  height: 30,
+                  width: 30.w,
+                  height: 30.w,
                   child: Stack(
                     children: <Widget>[
                       Center(
                         child: Icon(
                           Icons.share_outlined,
                           color: Color(0xFF863ED5),
-                          size: 24.0,
+                          size: 24.0.w,
                         ),
                       ),
                       TextButton(
@@ -140,8 +151,8 @@ class VerseTile extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          width: 26,
-                          height: 26,
+                          width: 26.w,
+                          height: 26.w,
                         ),
                       ),
                     ],
@@ -152,15 +163,15 @@ class VerseTile extends StatelessWidget {
                   child: Container(),
                 ),
                 SizedBox(
-                  width: 30,
-                  height: 30,
+                  width: 30.w,
+                  height: 30.w,
                   child: Stack(
                     children: <Widget>[
                       Center(
                         child: Icon(
                           Icons.play_arrow_outlined,
                           color: Color(0xFF863ED5),
-                          size: 28.0,
+                          size: 28.0.w,
                         ),
                       ),
                       TextButton(
@@ -172,8 +183,8 @@ class VerseTile extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          width: 26,
-                          height: 26,
+                          width: 26.w,
+                          height: 26.w,
                         ),
                       ),
                     ],
@@ -184,15 +195,15 @@ class VerseTile extends StatelessWidget {
                   child: Container(),
                 ),
                 SizedBox(
-                  width: 30,
-                  height: 30,
+                  width: 30.w,
+                  height: 30.w,
                   child: Stack(
                     children: <Widget>[
                       Center(
                         child: Icon(
                           Icons.bookmark_border_outlined,
                           color: Color(0xFF863ED5),
-                          size: 24.0,
+                          size: 24.0.w,
                         ),
                       ),
                       TextButton(
@@ -204,8 +215,8 @@ class VerseTile extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          width: 26,
-                          height: 26,
+                          width: 26.w,
+                          height: 26.w,
                         ),
                       ),
                     ],
@@ -219,7 +230,7 @@ class VerseTile extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 24),
+            padding: EdgeInsets.only(top: 24.w),
           ),
           Container(
             constraints: BoxConstraints(
@@ -229,17 +240,19 @@ class VerseTile extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(
-                    left: 3,
-                    right: 3,
+                    left: 3.w,
+                    right: 3.w,
                   ),
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
+                      padding: EdgeInsets.only(left: 4.0.w),
                       child: Text(
                         completeVerse,
                         softWrap: true,
-                        style: AppFont.arabicText,
+                        style: AppFont.arabicText(
+                          fontSize: 18.sp,
+                        ),
                         textAlign: TextAlign.right,
                         textHeightBehavior: TextHeightBehavior(
                           leadingDistribution:
@@ -253,7 +266,7 @@ class VerseTile extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 16),
+            padding: EdgeInsets.only(top: 16.w),
           ),
           Container(
             constraints: BoxConstraints(
@@ -263,8 +276,8 @@ class VerseTile extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(
-                    left: 3.0,
-                    right: 3.0,
+                    left: 3.0.w,
+                    right: 3.0.w,
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -273,7 +286,7 @@ class VerseTile extends StatelessWidget {
                       softWrap: true,
                       style: TextStyle(
                         fontFamily: "Poppins",
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Color(0xFF240F4F),
                       ),
                       textAlign: TextAlign.justify,
@@ -285,7 +298,7 @@ class VerseTile extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 8),
+            padding: EdgeInsets.only(top: 8.w),
           ),
         ],
       ),

@@ -15,7 +15,7 @@ class JuzDetails extends StatelessWidget {
               Text(
                 "Juz ${Get.arguments}\nPage belum dibuat.",
                 textAlign: TextAlign.center,
-                style: AppFont.display1,
+                style: AppFont.display1(),
               ),
               TextButton(
                 onPressed: () {

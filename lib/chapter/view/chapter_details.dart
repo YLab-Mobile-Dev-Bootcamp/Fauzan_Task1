@@ -46,7 +46,7 @@ class ChapterDetails extends StatelessWidget {
         body: Center(
           child: Container(
             height: double.infinity,
-            width: 326,
+            width: 326.w,
             child: Scaffold(
               body: NestedScrollView(
                 headerSliverBuilder: (
@@ -83,17 +83,19 @@ class ChapterDetails extends StatelessWidget {
                             ),
                           ),
                         ),
-                        leadingWidth: 30,
+                        leadingWidth: 30.sp,
                         title: Row(
                           children: <Widget>[
                             Container(
-                              height: 30,
-                              width: 1,
+                              height: 30.w,
+                              width: 1.w,
                             ),
                             Text(
                               "${Get.arguments[1]}",
                               // verseController.verseList[0].verseKey!,
-                              style: AppFont.appBarTitle,
+                              style: AppFont.appBarTitle(
+                                fontSize: 20.sp,
+                              ),
                             ),
                           ],
                         ),
@@ -107,7 +109,7 @@ class ChapterDetails extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(left: 30),
+                                        padding: EdgeInsets.only(left: 30.w),
                                       ),
                                       Align(
                                         alignment: Alignment.center,
@@ -138,7 +140,7 @@ class ChapterDetails extends StatelessWidget {
                         pinned: true,
                         floating: false,
                         centerTitle: true,
-                        expandedHeight: 320.0,
+                        expandedHeight: 320.0.w,
                         backgroundColor: Colors.white,
                         flexibleSpace: FlexibleSpaceBar(
                           collapseMode: CollapseMode.parallax,
@@ -187,13 +189,13 @@ class ChapterDetailsAppBarWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Container(
-          height: 66,
+          height: 70.w,
         ),
         ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(10.0.w),
           child: Container(
-            margin: EdgeInsets.only(top: 16.0, left: 8.0, right: 8.0),
-            height: 257,
+            margin: EdgeInsets.only(top: 16.0.w, left: 8.0.w, right: 8.0.w),
+            height: 257.w,
             // padding: EdgeInsets.only(left: 8.0, right: 8.0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -201,7 +203,7 @@ class ChapterDetailsAppBarWidget extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [Color(0xFFDF98FA), Color(0xFF9055FF)],
               ),
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(10.w),
             ),
             child: Material(
               color: Colors.transparent,
@@ -212,14 +214,14 @@ class ChapterDetailsAppBarWidget extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(10.0.w),
                         child: Container(
                           // width: 173,
                           // height: 99,
                           child: Image.asset(
                             "assets/images/quran.png",
-                            height: 141,
-                            width: 249,
+                            height: 141.w,
+                            width: 249.w,
                             fit: BoxFit.fitHeight,
                             color: Color.fromRGBO(0, 0, 0, 0.2),
                             colorBlendMode: BlendMode.dstIn,
@@ -230,7 +232,7 @@ class ChapterDetailsAppBarWidget extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(0, 0, 0, 0.3),
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(10.0.w),
                       ),
                     ),
                     Center(
@@ -239,7 +241,7 @@ class ChapterDetailsAppBarWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(top: 19.0),
+                            padding: EdgeInsets.only(top: 19.w),
                           ),
                           Text(
                             chapterArgs[1],
@@ -247,12 +249,12 @@ class ChapterDetailsAppBarWidget extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: "Poppins",
                               fontWeight: FontWeight.w600,
-                              fontSize: 26,
+                              fontSize: 26.sp,
                               color: Color(0xFFFFFFFF),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 2.0),
+                            padding: EdgeInsets.only(top: 2.0.w),
                           ),
                           Text(
                             chapterArgs[5],
@@ -260,40 +262,40 @@ class ChapterDetailsAppBarWidget extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: "Poppins",
                               fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               color: Color(0xFFFFFFFF),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(bottom: 19.0),
+                            padding: EdgeInsets.only(bottom: 19.0.w),
                           ),
                           Container(
-                            height: 0.5,
-                            width: 200,
+                            height: 0.5.w,
+                            width: 200.w,
                             color: Color(0xFFFFFFFF),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(bottom: 19.0),
+                            padding: EdgeInsets.only(bottom: 19.0.w),
                           ),
                           Text(
-                            "${chapterArgs[2]} - ${chapterArgs[3]} Verses"
+                            "${chapterArgs[2]} - ${chapterArgs[3]} Ayat"
                                 .toUpperCase(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: "Poppins",
                               fontWeight: FontWeight.w600,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               color: Color(0xFFFFFFFF),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(bottom: 19.0),
+                            padding: EdgeInsets.only(bottom: 19.0.w),
                           ),
                           Bismillah(
                             bismillahPre: chapterArgs[4],
                           ),
                           Padding(
-                            padding: EdgeInsets.only(bottom: 19.0),
+                            padding: EdgeInsets.only(bottom: 19.0.w),
                           ),
                         ],
                       ),

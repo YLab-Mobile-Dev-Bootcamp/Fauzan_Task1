@@ -36,7 +36,7 @@ class MainPage extends StatelessWidget {
         body: Center(
           child: Container(
             height: double.infinity,
-            width: 326,
+            width: 340.w,
             child: DefaultTabController(
               length: _tabs.length,
               child: Scaffold(
@@ -79,17 +79,19 @@ class MainPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          leadingWidth: 30,
+                          leadingWidth: 30.w,
                           title: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Container(
-                                height: 30,
-                                width: 1,
+                                height: 30.w,
+                                width: 1.w,
                               ),
                               Text(
-                                "Quranku",
-                                style: AppFont.appBarTitle,
+                                "QuranKu",
+                                style: AppFont.appBarTitle(
+                                  fontSize: 20.sp,
+                                ),
                               ),
                             ],
                           ),
@@ -105,7 +107,8 @@ class MainPage extends StatelessWidget {
                                             MainAxisAlignment.end,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(left: 30),
+                                            padding:
+                                                EdgeInsets.only(left: 30.w),
                                           ),
                                           Align(
                                             alignment: Alignment.center,
@@ -137,7 +140,7 @@ class MainPage extends StatelessWidget {
                           pinned: true,
                           floating: false,
                           centerTitle: true,
-                          expandedHeight: 320.0,
+                          expandedHeight: 320.0.w,
                           backgroundColor: Colors.white,
                           flexibleSpace: FlexibleSpaceBar(
                             collapseMode: CollapseMode.none,
@@ -146,18 +149,25 @@ class MainPage extends StatelessWidget {
                           ),
                           forceElevated: innerBoxIsScrolled,
                           bottom: PreferredSize(
-                            preferredSize: Size.fromHeight(50),
+                            preferredSize: Size.fromHeight(40.w),
                             child: Container(
                               color: Color(0xFFFFFFFF),
                               child: TabBar(
                                 // These are the widgets to put in each tab in the tab bar.
                                 tabs: _tabs
-                                    .map((String name) => Tab(
+                                    .map(
+                                      (String name) => Tab(
+                                        child: FittedBox(
+                                          fit: BoxFit.fitWidth,
                                           child: Text(
                                             name,
-                                            style: AppFont.tabBarTitle,
+                                            style: AppFont.tabBarTitle(
+                                              fontSize: 16.sp,
+                                            ),
                                           ),
-                                        ))
+                                        ),
+                                      ),
+                                    )
                                     .toList(),
                               ),
                             ),
@@ -185,7 +195,9 @@ class MainPage extends StatelessWidget {
                           Center(
                             child: Text(
                               "Belum dibikin",
-                              style: AppFont.display2,
+                              style: AppFont.display2(
+                                fontSize: 18.sp,
+                              ),
                             ),
                           ),
                         ],
@@ -212,34 +224,38 @@ class AppBarWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Container(
-          height: 86,
+          height: 86.w,
         ),
         Container(
-          margin: EdgeInsets.only(top: 0.0),
+          margin: EdgeInsets.only(top: 0.0.w),
           width: double.infinity,
-          padding: EdgeInsets.only(left: 8.0, right: 0.0),
+          padding: EdgeInsets.only(left: 8.0.w, right: 0.0.w),
           child: Text(
             'Assalamualaikum,',
             textAlign: TextAlign.start,
-            style: AppFont.display2,
+            style: AppFont.display2(
+              fontSize: 18.sp,
+            ),
           ),
           // color: Colors.black,
         ),
         Container(
-          margin: EdgeInsets.only(top: 4.0),
+          margin: EdgeInsets.only(top: 4.0.w),
           width: double.infinity,
-          padding: EdgeInsets.only(left: 8.0, right: 0.0),
+          padding: EdgeInsets.only(left: 8.0.w, right: 0.0.w),
           child: Text(
             'Fauzan Abdillah',
             textAlign: TextAlign.start,
-            style: AppFont.display1,
+            style: AppFont.display1(
+              fontSize: 24.sp,
+            ),
           ),
         ),
         ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(10.0.w),
           child: Container(
-            margin: EdgeInsets.only(top: 16.0, left: 8.0, right: 8.0),
-            height: 131,
+            margin: EdgeInsets.only(top: 16.0.w, left: 8.0.w, right: 8.0.w),
+            height: 131.w,
             width: double.infinity,
             // padding: EdgeInsets.only(left: 8.0, right: 8.0),
             decoration: BoxDecoration(
@@ -248,7 +264,7 @@ class AppBarWidget extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [Color(0xFFDF98FA), Color(0xFF9055FF)],
               ),
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(10.0.w),
             ),
             child: Material(
               color: Colors.transparent,
@@ -265,24 +281,24 @@ class AppBarWidget extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Container(
-                          width: 16.0,
+                          width: 16.0.w,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Padding(
-                              padding: EdgeInsets.only(top: 19.0),
+                              padding: EdgeInsets.only(top: 19.0.w),
                             ),
                             Row(
                               children: <Widget>[
                                 Icon(
                                   Icons.bookmark,
                                   color: Color(0xFFFFFFFF),
-                                  size: 20.0,
+                                  size: 20.sp,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
+                                  padding: EdgeInsets.only(right: 8.0.sp),
                                 ),
                                 Text(
                                   "Terakhir Dibaca",
@@ -290,14 +306,14 @@ class AppBarWidget extends StatelessWidget {
                                   style: TextStyle(
                                     fontFamily: "Poppins",
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 14,
+                                    fontSize: 14.sp,
                                     color: Color(0xFFFFFFFF),
                                   ),
                                 ),
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 28.0),
+                              padding: EdgeInsets.only(top: 28.0.w),
                             ),
                             Text(
                               "Al-Fatihah",
@@ -305,39 +321,39 @@ class AppBarWidget extends StatelessWidget {
                               style: TextStyle(
                                 fontFamily: "Poppins",
                                 fontWeight: FontWeight.w700,
-                                fontSize: 18,
+                                fontSize: 18.sp,
                                 color: Color(0xFFFFFFFF),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 2.0),
+                              padding: EdgeInsets.only(top: 2.0.w),
                             ),
                             Text(
                               "Ayat Ke: 1",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontFamily: "Poppins",
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 color: Color(0xFFFFFFFF),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(bottom: 19.0),
+                              padding: EdgeInsets.only(bottom: 19.0.w),
                             ),
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: 0.0),
+                          padding: EdgeInsets.only(right: 0.0.w),
                         ),
                       ],
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(10.0.w),
                         child: Container(
-                          width: 173,
-                          height: 99,
+                          width: 173.w,
+                          height: 99.w,
                           child: Image.asset("assets/images/quran.png"),
                         ),
                       ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starter_project/common/app_color.dart';
 import 'package:starter_project/common/app_font.dart';
-import 'package:starter_project/common/app_string.dart';
 import 'package:starter_project/views/main_page.dart';
 
 void main() {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: AppString.fetchApiData,
+      title: "QuranKu",
       theme: ThemeData(
         fontFamily: "Poppins",
         primarySwatch: AppColor.createMaterialColor(Color(0xFF672CBC)),
