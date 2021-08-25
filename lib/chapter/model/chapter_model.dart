@@ -84,11 +84,11 @@ class TranslatedName {
     required this.name,
   });
 
-  LanguageName languageName;
+  LanguageName? languageName;
   String name;
 
   factory TranslatedName.fromJson(Map<String, dynamic> json) => TranslatedName(
-        languageName: languageNameValues.map![json["language_name"]]!,
+        languageName: languageNameValues.map![json["language_name"]],
         name: json["name"],
       );
 

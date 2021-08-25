@@ -3,12 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:starter_project/chapter/controller/chapter_controller.dart';
 import 'package:starter_project/common/app_font.dart';
+import 'package:starter_project/juz/controller/juz_controller.dart';
 import 'package:starter_project/chapter/view/chapter_details.dart';
+import 'package:starter_project/juz/view/juz_details.dart';
 
-class ChapterListTile extends StatelessWidget {
-  final ChapterController chapterController;
+class JuzListTile extends StatelessWidget {
+  final JuzController juzController;
   final String name;
-  const ChapterListTile({required this.chapterController, required this.name});
+  const JuzListTile({required this.juzController, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -30,48 +32,33 @@ class ChapterListTile extends StatelessWidget {
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                       return Column(
-                        children: <Widget>[
+                        children: [
                           ListTile(
                             contentPadding: EdgeInsets.all(10),
                             title: Text(
-                              chapterController.chapterList[index].nameSimple!,
+                              'Juz ${juzController.juzList[index].juzNumber!}',
                               style: AppFont.title,
                             ),
                             subtitle: Text(
-                              '${chapterController.chapterList[index].revelationPlace!} - ${chapterController.chapterList[index].versesCount!} Ayat'
+                              '${juzController.juzList[index].firstVerseId!} - ${juzController.juzList[index].lastVerseId!}'
                                   .toUpperCase(),
                               style: AppFont.subtitle,
                             ),
                             leading: SurahNumber(
-                              surahNumber:
-                                  chapterController.chapterList[index].id!,
+                              surahNumber: juzController.juzList[index].id!,
                             ),
                             trailing: Text(
-                              chapterController.chapterList[index].nameArabic!,
+                              '${juzController.juzList[index].firstVerseId!}',
                               style: AppFont.arabicText2,
                               textAlign: TextAlign.right,
                             ),
                             tileColor: Colors.white,
                             onTap: () {
                               Get.to(
-                                () => ChapterDetails(
-                                  chapterController.chapterList[index].id!,
-                                ),
-                                arguments: [
-                                  chapterController.chapterList[index].id!,
-                                  chapterController
-                                      .chapterList[index].nameSimple!,
-                                  chapterController
-                                      .chapterList[index].revelationPlace!,
-                                  chapterController
-                                      .chapterList[index].versesCount!,
-                                  chapterController
-                                      .chapterList[index].bismillahPre!,
-                                  chapterController
-                                      .chapterList[index].translatedName!.name,
-                                ],
+                                JuzDetails(),
+                                arguments:
+                                    juzController.juzList[index].juzNumber!,
                               );
-                              print("Berhasil pergi ke detail surat");
                             },
                           ),
                           Container(
@@ -81,7 +68,7 @@ class ChapterListTile extends StatelessWidget {
                         ],
                       );
                     },
-                    childCount: chapterController.chapterList.length,
+                    childCount: juzController.juzList.length,
                   ),
                 ),
               ),

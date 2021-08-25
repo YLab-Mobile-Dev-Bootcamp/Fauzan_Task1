@@ -3,14 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:starter_project/chapter/view/chapter_list_tile.dart';
 import 'package:starter_project/common/app_font.dart';
-import 'package:starter_project/views/chapter_details.dart';
+import 'package:starter_project/juz/controller/juz_controller.dart';
+import 'package:starter_project/chapter/view/chapter_details.dart';
 import 'package:starter_project/chapter/controller/chapter_controller.dart';
+import 'package:starter_project/juz/view/juz_list_tile.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
-  final List<String> _tabs = <String>['Surah', 'Juz', 'Hizb'];
+  final List<String> _tabs = <String>['Surah', 'Juz', 'Bookmark'];
   final ChapterController chapterController = Get.put(ChapterController());
+  final JuzController juzController = Get.put(JuzController());
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +63,7 @@ class MainPage extends StatelessWidget {
                                 width: 10,
                               ),
                               Text(
-                                "Quran Kareem",
+                                "Quranku",
                                 style: AppFont.appBarTitle,
                               ),
                             ],
@@ -78,7 +82,7 @@ class MainPage extends StatelessWidget {
                           expandedHeight: 320.0,
                           backgroundColor: Colors.white,
                           flexibleSpace: FlexibleSpaceBar(
-                            collapseMode: CollapseMode.parallax,
+                            collapseMode: CollapseMode.none,
                             centerTitle: true,
                             background: AppBarWidget(),
                           ),
@@ -111,76 +115,22 @@ class MainPage extends StatelessWidget {
                       );
                     } else {
                       return TabBarView(
-                        // These are the contents of the tab views, below the tabs.
-                        children: _tabs.map(
-                          (String name) {
-                            return SafeArea(
-                              top: false,
-                              bottom: false,
-                              child: Builder(
-                                builder: (BuildContext context) {
-                                  return CustomScrollView(
-                                    key: PageStorageKey<String>(name),
-                                    slivers: <Widget>[
-                                      SliverOverlapInjector(
-                                        handle: NestedScrollView
-                                            .sliverOverlapAbsorberHandleFor(
-                                                context),
-                                      ),
-                                      SliverPadding(
-                                        padding: const EdgeInsets.all(0.0),
-                                        sliver: SliverFixedExtentList(
-                                          itemExtent: 80.0,
-                                          delegate: SliverChildBuilderDelegate(
-                                            (BuildContext context, int index) {
-                                              return ListTile(
-                                                contentPadding:
-                                                    EdgeInsets.all(10),
-                                                title: Text(
-                                                  chapterController
-                                                      .chapterList[index]
-                                                      .nameSimple!,
-                                                  style: AppFont.title,
-                                                ),
-                                                subtitle: Text(
-                                                  '${chapterController.chapterList[index].revelationPlace!} - ${chapterController.chapterList[index].versesCount!} Verses'
-                                                      .toUpperCase(),
-                                                  style: AppFont.subtitle,
-                                                ),
-                                                leading: SurahNumber(
-                                                  surahNumber: chapterController
-                                                      .chapterList[index].id!,
-                                                ),
-                                                trailing: Text(
-                                                  chapterController
-                                                      .chapterList[index]
-                                                      .nameArabic!,
-                                                  style: AppFont.arabicText2,
-                                                  textAlign: TextAlign.right,
-                                                ),
-                                                tileColor: Colors.white,
-                                                onTap: () {
-                                                  Get.to(
-                                                    ChapterDetails(),
-                                                    arguments: chapterController
-                                                        .chapterList[index]
-                                                        .nameSimple!,
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            childCount: chapterController
-                                                .chapterList.length,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ).toList(),
+                        children: <Widget>[
+                          ChapterListTile(
+                            chapterController: chapterController,
+                            name: _tabs[0],
+                          ),
+                          JuzListTile(
+                            juzController: juzController,
+                            name: _tabs[1],
+                          ),
+                          Center(
+                            child: Text(
+                              "Belum dibikin",
+                              style: AppFont.display2,
+                            ),
+                          ),
+                        ],
                       );
                     }
                   }),
@@ -189,35 +139,6 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SurahNumber extends StatelessWidget {
-  final int surahNumber;
-  const SurahNumber({required this.surahNumber});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 36,
-      height: 36,
-      child: Stack(
-        children: <Widget>[
-          Center(child: SvgPicture.asset("assets/icons/ornament.svg")),
-          Center(
-            child: Text(
-              "$surahNumber",
-              style: TextStyle(
-                fontFamily: "Poppins",
-                fontWeight: FontWeight.w600,
-                fontSize: 14,
-                color: Color(0xFF240F4F),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -261,6 +182,7 @@ class AppBarWidget extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.only(top: 16.0, left: 8.0, right: 8.0),
             height: 131,
+            width: double.infinity,
             // padding: EdgeInsets.only(left: 8.0, right: 8.0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -273,73 +195,76 @@ class AppBarWidget extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Stack(
                   children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(left: 20.0),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.only(top: 19.0),
+                          padding: EdgeInsets.only(left: 16.0),
                         ),
-                        Row(
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Icon(
-                              Icons.bookmark,
-                              color: Color(0xFFFFFFFF),
-                              size: 20.0,
+                            Padding(
+                              padding: EdgeInsets.only(top: 19.0),
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.bookmark,
+                                  color: Color(0xFFFFFFFF),
+                                  size: 20.0,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                ),
+                                Text(
+                                  "Terakhir Dibaca",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                    color: Color(0xFFFFFFFF),
+                                  ),
+                                ),
+                              ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
+                              padding: EdgeInsets.only(top: 28.0),
                             ),
                             Text(
-                              "Last Read",
+                              "Al-Fatihah",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontFamily: "Poppins",
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+                                color: Color(0xFFFFFFFF),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2.0),
+                            ),
+                            Text(
+                              "Ayat Ke: 1",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontFamily: "Poppins",
                                 fontSize: 14,
                                 color: Color(0xFFFFFFFF),
                               ),
                             ),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 19.0),
+                            ),
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 28.0),
-                        ),
-                        Text(
-                          "Al-Fatihah",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18,
-                            color: Color(0xFFFFFFFF),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 2.0),
-                        ),
-                        Text(
-                          "Ayah No: 1",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontFamily: "Poppins",
-                            fontSize: 14,
-                            color: Color(0xFFFFFFFF),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 19.0),
+                          padding: EdgeInsets.only(right: 0.0),
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 24.0),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
