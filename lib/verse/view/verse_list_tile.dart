@@ -247,9 +247,9 @@ class VerseTile extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Padding(
                       padding: EdgeInsets.only(left: 4.0.w),
-                      child: Text(
+                      child: SelectableText(
                         completeVerse,
-                        softWrap: true,
+                        // softWrap: true,
                         style: AppFont.arabicText(
                           fontSize: 18.sp,
                         ),
@@ -281,9 +281,9 @@ class VerseTile extends StatelessWidget {
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: SelectableText(
                       _parseHtmlString(completeTranslation),
-                      softWrap: true,
+                      // softWrap: true,
                       style: TextStyle(
                         fontFamily: "Poppins",
                         fontSize: 16.sp,

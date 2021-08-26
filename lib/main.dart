@@ -1,12 +1,19 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starter_project/bindings/load_auth_binding.dart';
 import 'package:starter_project/common/app_color.dart';
 import 'package:starter_project/common/app_font.dart';
+import 'package:starter_project/routes/app_pages.dart';
+import 'package:starter_project/views/load_auth_page.dart';
 import 'package:starter_project/views/main_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  LoadAuthBinding().dependencies();
   HttpOverrides.global = new MyHttpOverrides();
   runApp(MyApp());
 }
@@ -16,6 +23,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "QuranKu",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
       theme: ThemeData(
         fontFamily: "Poppins",
         primarySwatch: AppColor.createMaterialColor(Color(0xFF672CBC)),
@@ -23,7 +32,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF9F9F9),
       ),
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: LoadAuthPage(),
     );
   }
 }

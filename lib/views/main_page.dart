@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:starter_project/chapter/view/chapter_list_tile.dart';
 import 'package:starter_project/common/app_font.dart';
+import 'package:starter_project/controllers/main_controller.dart';
 import 'package:starter_project/juz/controller/juz_controller.dart';
 import 'package:starter_project/chapter/controller/chapter_controller.dart';
 import 'package:starter_project/juz/view/juz_list_tile.dart';
 
-class MainPage extends StatelessWidget {
-  MainPage({Key? key}) : super(key: key);
+class MainPage extends GetView<MainController> {
   final List<String> _tabs = <String>['Surah', 'Juz', 'Bookmark'];
   final ChapterController chapterController = Get.put(ChapterController());
   final JuzController juzController = Get.put(JuzController());
@@ -24,6 +24,8 @@ class MainPage extends StatelessWidget {
       ),
       designSize: Size(375, 812),
     );
+
+    print(controller.user.displayName);
 
     return ScreenTypeLayout(
       breakpoints: ScreenBreakpoints(
@@ -128,6 +130,7 @@ class MainPage extends StatelessWidget {
                                             toastLength: Toast.LENGTH_SHORT,
                                             gravity: ToastGravity.SNACKBAR,
                                           );
+                                          controller.logout();
                                         },
                                         child: Container(),
                                       ),
@@ -145,7 +148,9 @@ class MainPage extends StatelessWidget {
                           flexibleSpace: FlexibleSpaceBar(
                             collapseMode: CollapseMode.none,
                             centerTitle: true,
-                            background: AppBarWidget(),
+                            background: AppBarWidget(
+                              fullName: controller.user.displayName!,
+                            ),
                           ),
                           forceElevated: innerBoxIsScrolled,
                           bottom: PreferredSize(
@@ -215,7 +220,8 @@ class MainPage extends StatelessWidget {
 }
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({Key? key}) : super(key: key);
+  final String fullName;
+  const AppBarWidget({this.fullName = "Hamba Allah"});
 
   @override
   Widget build(BuildContext context) {
@@ -244,7 +250,7 @@ class AppBarWidget extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.only(left: 8.0.w, right: 0.0.w),
           child: Text(
-            'Fauzan Abdillah',
+            fullName,
             textAlign: TextAlign.start,
             style: AppFont.display1(
               fontSize: 24.sp,
@@ -365,6 +371,60 @@ class AppBarWidget extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class MainButton extends StatelessWidget {
+  final String text;
+  final Function onTapAction;
+  const MainButton({this.text = 'tombol', required this.onTapAction});
+
+  @override
+  Widget build(BuildContext context) {
+    ScreenUtil.init(
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+      designSize: Size(375, 812),
+    );
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        // margin: EdgeInsets.symmetric(vertical: 10),
+        alignment: Alignment.center,
+        height: 60.w,
+        width: 140.w,
+        decoration: BoxDecoration(
+          color: Color(0xFFFFFFFF),
+          borderRadius: BorderRadius.circular(10.w),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 14.w),
+              blurRadius: 18.w,
+              spreadRadius: -24.w,
+              color: Colors.black45,
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 18.w,
+                  color: Color(0xFF863ED5),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

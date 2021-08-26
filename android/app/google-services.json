@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "88558771761",
+    "project_id": "quranku-129b1",
+    "storage_bucket": "quranku-129b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88558771761:android:73830694b10c7b3bd2ff10",
+        "android_client_info": {
+          "package_name": "com.fauzanebd.quranku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88558771761-9mf2k6mm7ge66v486i8defaqu7l71cmj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fauzanebd.quranku",
+            "certificate_hash": "689812483689852f8edd90ac2f0aae07035bfc7c"
+          }
+        },
+        {
+          "client_id": "88558771761-3fkhju1nrtpdajs6dnb4df5tq2iens98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZmQRfrUc_SRyAHyfxCT_jEwzC-AS1uVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88558771761-3fkhju1nrtpdajs6dnb4df5tq2iens98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
-package com.example.starter_project
+package com.fauzanebd.quranku
 
 import io.flutter.embedding.android.FlutterActivity
 
 class MainActivity: FlutterActivity() {
+    
 }
