@@ -26,7 +26,7 @@ UI by @tanvir_ux on Instagram
 <img src="https://cdn.discordapp.com/attachments/693773038843461685/880354309420761088/Screenshot_20210826-143334_QuranKu.png" height=400> 
 
 - Halaman Utama:
-<img src="https://cdn.discordapp.com/attachments/693773038843461685/880354303640997948/Screenshot_20210826-143215_QuranKu.png" height=400>
+<img src="https://cdn.discordapp.com/attachments/693773038843461685/880354303301263360/Screenshot_20210826-143153_QuranKu.png" height=400>
 
 - Halaman Surat:
 <img src="https://cdn.discordapp.com/attachments/693773038843461685/880354303640997948/Screenshot_20210826-143215_QuranKu.png" height=400>
