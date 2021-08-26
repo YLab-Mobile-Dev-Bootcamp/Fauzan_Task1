@@ -20,8 +20,11 @@ membaca Al-Quran, bisa hadits, kiblat, dan sebagainya.
 
 ## Tampilan QuranKu :
 
-- Halaman Utama:
-<img src="https://cdn.discordapp.com/attachments/693773038843461685/875757955591569468/Screenshot_20210813-220857_starter_project.png" height=400> 
+- Halaman Login:
+<img src="https://cdn.discordapp.com/attachments/693773038843461685/880354309420761088/Screenshot_20210826-143334_QuranKu.png" height=400> 
 
-- Halaman Hasil:
-<img src="https://cdn.discordapp.com/attachments/693773038843461685/875757955839062096/Screenshot_20210813-220902_starter_project.png" height=400> 
+- Halaman Utama:
+<img src="https://cdn.discordapp.com/attachments/693773038843461685/880354303640997948/Screenshot_20210826-143215_QuranKu.png" height=400>
+
+- Halaman Surat:
+<img src="https://cdn.discordapp.com/attachments/693773038843461685/880354303640997948/Screenshot_20210826-143215_QuranKu.png" height=400>
