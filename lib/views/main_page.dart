@@ -60,18 +60,14 @@ class MainPage extends GetView<MainController> {
                                   children: <Widget>[
                                     Center(
                                       child: Icon(
-                                        Icons.menu_outlined,
+                                        Icons.logout_outlined,
                                         color: Color(0xFF8789A3),
                                       ),
                                     ),
                                     Center(
                                       child: TextButton(
                                         onPressed: () {
-                                          Fluttertoast.showToast(
-                                            msg: "Menu belum bisa diakses",
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.SNACKBAR,
-                                          );
+                                          controller.logout();
                                         },
                                         child: Container(),
                                       ),
@@ -103,24 +99,20 @@ class MainPage extends GetView<MainController> {
                               child: Container(
                                 child: Stack(
                                   children: <Widget>[
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(left: 30.w),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 30.w),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Icon(
+                                            Icons.search,
+                                            color: Color(0xFF8789A3),
                                           ),
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Icon(
-                                              Icons.search,
-                                              color: Color(0xFF8789A3),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                     Center(
                                       child: TextButton(
@@ -130,7 +122,6 @@ class MainPage extends GetView<MainController> {
                                             toastLength: Toast.LENGTH_SHORT,
                                             gravity: ToastGravity.SNACKBAR,
                                           );
-                                          controller.logout();
                                         },
                                         child: Container(),
                                       ),

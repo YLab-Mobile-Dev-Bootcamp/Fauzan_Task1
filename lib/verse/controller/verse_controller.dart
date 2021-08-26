@@ -18,6 +18,7 @@ class VerseController extends GetxController {
     try {
       isLoading(true);
       if (byChapterId!) {
+        print("Fetching verses for surah $chapterId page $page");
         var verse = await ApiService.fetchVersesbyChapterId(
             chapterId: chapterId!, page: this.page);
         if (verse != null) {
