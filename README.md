@@ -18,6 +18,8 @@ namun sementara dibuat tombol logout
 - Rencananya ingin dibuat Navigation bar, apabila kemudian ada fitur lain selain
 membaca Al-Quran, bisa hadits, kiblat, dan sebagainya.
 
+UI by @tanvir_ux on Instagram
+
 ## Tampilan QuranKu :
 
 - Halaman Login:
